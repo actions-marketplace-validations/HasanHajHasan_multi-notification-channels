@@ -1,0 +1,8 @@
+{STATUS} | {REPOSITORY} | {BRANCH}
+
+Job: {JOB}
+Workflow: {WORKFLOW}
+Commit: {COMMIT}
+Author: {AUTHOR}
+
+{RUN_URL}

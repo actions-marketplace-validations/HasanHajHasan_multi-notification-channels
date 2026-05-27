@@ -1,0 +1,162 @@
+name: 'Multi-Channel Notification'
+description: 'Node.js action — send notifications to Slack, Discord, Telegram, Teams, Google Chat, Email, AWS SNS, Gotify, ntfy, and webhooks via Apprise'
+author: 'HHH'
+
+branding:
+  icon: 'bell'
+  color: 'blue'
+
+inputs:
+  # ── General ────────────────────────────────────────────────────────────────
+  status:
+    description: 'Job status: success | failure | cancelled | or any custom string'
+    required: false
+    default: 'failure'
+  job_name:
+    description: 'Name of the job that triggered the notification'
+    required: false
+    default: ${{ github.job }}
+  channels:
+    description: 'Comma-separated list of channels to notify: slack,discord,telegram,teams,gchat,email,sns,gotify,ntfy,webhook'
+    required: false
+    default: 'slack'
+  title:
+    description: 'Custom notification title (overrides auto-generated title)'
+    required: false
+    default: ''
+  message:
+    description: 'Custom message body — when set, built-in templates are skipped'
+    required: false
+    default: ''
+  debug:
+    description: 'Enable verbose Apprise output (true/false)'
+    required: false
+    default: 'false'
+
+  # ── Custom template paths ──────────────────────────────────────────────────
+  slack_template:
+    description: 'Path to a custom Slack template file (repo-relative)'
+    required: false
+    default: ''
+  discord_template:
+    description: 'Path to a custom Discord template file'
+    required: false
+    default: ''
+  telegram_template:
+    description: 'Path to a custom Telegram template file'
+    required: false
+    default: ''
+  teams_template:
+    description: 'Path to a custom Microsoft Teams template file'
+    required: false
+    default: ''
+  gchat_template:
+    description: 'Path to a custom Google Chat template file'
+    required: false
+    default: ''
+  email_template:
+    description: 'Path to a custom Email HTML template file'
+    required: false
+    default: ''
+  sns_template:
+    description: 'Path to a custom AWS SNS template file'
+    required: false
+    default: ''
+  gotify_template:
+    description: 'Path to a custom Gotify template file'
+    required: false
+    default: ''
+  ntfy_template:
+    description: 'Path to a custom ntfy template file'
+    required: false
+    default: ''
+  webhook_template:
+    description: 'Path to a custom webhook template file'
+    required: false
+    default: ''
+
+  # ── Apprise URLs (store as GitHub Secrets) ─────────────────────────────────
+  slack_url:
+    description: 'Slack Apprise URL  e.g. slack://botname@T1/A1/W1/#channel'
+    required: false
+    default: ''
+  discord_url:
+    description: 'Discord Apprise URL  e.g. discord://webhook_id/webhook_token'
+    required: false
+    default: ''
+  telegram_url:
+    description: 'Telegram Apprise URL  e.g. tgram://bottoken/chatid'
+    required: false
+    default: ''
+  teams_url:
+    description: 'Microsoft Teams Apprise URL  e.g. msteams://TokenA/TokenB/TokenC/TokenD'
+    required: false
+    default: ''
+  gchat_url:
+    description: 'Google Chat Apprise URL  e.g. gchat://workspace/key/token'
+    required: false
+    default: ''
+  email_url:
+    description: 'Email Apprise URL  e.g. mailtos://user:pass@gmail.com'
+    required: false
+    default: ''
+  sns_url:
+    description: 'AWS SNS Apprise URL  e.g. sns://AccessKeyID/SecretKey/us-east-1/TopicName'
+    required: false
+    default: ''
+  gotify_url:
+    description: 'Gotify Apprise URL  e.g. gotify://hostname/token'
+    required: false
+    default: ''
+  ntfy_url:
+    description: 'ntfy Apprise URL  e.g. ntfy://ntfy.sh/your-topic'
+    required: false
+    default: ''
+  webhook_url:
+    description: 'Generic webhook Apprise URL  e.g. json://hostname/path  or  form://hostname/path'
+    required: false
+    default: ''
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Install Apprise
+      shell: bash
+      run: pipx install apprise
+
+    - name: Send Notifications
+      shell: bash
+      run: node "${{ github.action_path }}/src/index.js"
+      env:
+        ACTION_PATH:              ${{ github.action_path }}
+        INPUT_STATUS:             ${{ inputs.status }}
+        INPUT_JOB_NAME:           ${{ inputs.job_name }}
+        INPUT_CHANNELS:           ${{ inputs.channels }}
+        INPUT_TITLE:              ${{ inputs.title }}
+        INPUT_MESSAGE:            ${{ inputs.message }}
+        INPUT_DEBUG:              ${{ inputs.debug }}
+        INPUT_SLACK_TEMPLATE:     ${{ inputs.slack_template }}
+        INPUT_DISCORD_TEMPLATE:   ${{ inputs.discord_template }}
+        INPUT_TELEGRAM_TEMPLATE:  ${{ inputs.telegram_template }}
+        INPUT_TEAMS_TEMPLATE:     ${{ inputs.teams_template }}
+        INPUT_GCHAT_TEMPLATE:     ${{ inputs.gchat_template }}
+        INPUT_EMAIL_TEMPLATE:     ${{ inputs.email_template }}
+        INPUT_SNS_TEMPLATE:       ${{ inputs.sns_template }}
+        INPUT_GOTIFY_TEMPLATE:    ${{ inputs.gotify_template }}
+        INPUT_NTFY_TEMPLATE:      ${{ inputs.ntfy_template }}
+        INPUT_WEBHOOK_TEMPLATE:   ${{ inputs.webhook_template }}
+        INPUT_SLACK_URL:          ${{ inputs.slack_url }}
+        INPUT_DISCORD_URL:        ${{ inputs.discord_url }}
+        INPUT_TELEGRAM_URL:       ${{ inputs.telegram_url }}
+        INPUT_TEAMS_URL:          ${{ inputs.teams_url }}
+        INPUT_GCHAT_URL:          ${{ inputs.gchat_url }}
+        INPUT_EMAIL_URL:          ${{ inputs.email_url }}
+        INPUT_SNS_URL:            ${{ inputs.sns_url }}
+        INPUT_GOTIFY_URL:         ${{ inputs.gotify_url }}
+        INPUT_NTFY_URL:           ${{ inputs.ntfy_url }}
+        INPUT_WEBHOOK_URL:        ${{ inputs.webhook_url }}

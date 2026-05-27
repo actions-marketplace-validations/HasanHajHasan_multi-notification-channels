@@ -1,0 +1,11 @@
+<b>{EMOJI} {TITLE}</b>
+
+<b>Status:</b>      {STATUS}
+<b>Repository:</b>  {REPOSITORY}
+<b>Branch:</b>      {BRANCH}
+<b>Workflow:</b>    {WORKFLOW}
+<b>Job:</b>         {JOB}
+<b>Commit:</b>      <code>{COMMIT}</code>
+<b>Author:</b>      {AUTHOR}
+
+<a href="{RUN_URL}">View Workflow Run</a>
