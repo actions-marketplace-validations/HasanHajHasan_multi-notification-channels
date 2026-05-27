@@ -21,10 +21,7 @@
       border-radius: 10px 10px 0 0;
       color: #fff;
     }
-    .header.success  { background: linear-gradient(135deg, #11998e, #38ef7d); }
-    .header.danger   { background: linear-gradient(135deg, #eb3349, #f45c43); }
-    .header.warning  { background: linear-gradient(135deg, #f7971e, #ffd200); }
-    .header.info     { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+    .header { background: linear-gradient(135deg, #4f46e5, #7c3aed); }
     .header h1 {
       margin: 0;
       font-size: 22px;
@@ -86,40 +83,14 @@
 </head>
 <body>
   <div class="wrapper">
-    <div class="header {COLOR}">
-      <h1>{EMOJI} {TITLE}</h1>
-      <p>GitHub Actions Notification</p>
+    <div class="header">
+      <h1>{TITLE}</h1>
     </div>
     <div class="card">
-      <div class="row">
-        <span class="label">Repository</span>
-        <span class="value">{REPOSITORY}</span>
-      </div>
-      <div class="row">
-        <span class="label">Branch</span>
-        <span class="value">{BRANCH}</span>
-      </div>
-      <div class="row">
-        <span class="label">Workflow</span>
-        <span class="value">{WORKFLOW}</span>
-      </div>
-      <div class="row">
-        <span class="label">Job</span>
-        <span class="value">{JOB}</span>
-      </div>
-      <div class="row">
-        <span class="label">Commit</span>
-        <span class="value"><span class="code">{COMMIT}</span></span>
-      </div>
-      <div class="row">
-        <span class="label">Author</span>
-        <span class="value">{AUTHOR}</span>
-      </div>
-
-      <a href="{RUN_URL}" class="btn">View Workflow Run</a>
+      <p style="white-space: pre-wrap; font-size: 14px; color: #222; margin: 0;">{MESSAGE}</p>
     </div>
     <div class="footer">
-      This is an automated notification from GitHub Actions.
+      This is an automated notification.
     </div>
   </div>
 </body>

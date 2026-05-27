@@ -1,11 +1,3 @@
-{EMOJI} *{TITLE}*
+*{TITLE}*
 
-*Status:*      {STATUS}
-*Repository:*  {REPOSITORY}
-*Branch:*      {BRANCH}
-*Workflow:*    {WORKFLOW}
-*Job:*         {JOB}
-*Commit:*      {COMMIT}
-*Author:*      {AUTHOR}
-
-View Run: {RUN_URL}
+{MESSAGE}

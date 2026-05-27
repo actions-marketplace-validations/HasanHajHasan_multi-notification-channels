@@ -1,13 +1,3 @@
-{EMOJI} **{TITLE}**
+**{TITLE}**
 
-| Field      | Value |
-|------------|-------|
-| Status     | {STATUS} |
-| Repository | {REPOSITORY} |
-| Branch     | {BRANCH} |
-| Workflow   | {WORKFLOW} |
-| Job        | {JOB} |
-| Commit     | {COMMIT} |
-| Author     | {AUTHOR} |
-
-[View Workflow Run]({RUN_URL})
+{MESSAGE}
