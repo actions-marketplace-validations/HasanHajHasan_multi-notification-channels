@@ -1,5 +1,5 @@
-name: 'Multi-Channel Notification'
-description: 'Node.js action — send notifications to Slack, Discord, Telegram, Teams, Google Chat, Email, AWS SNS, Gotify, ntfy, and webhooks via Apprise'
+name: 'Multi Notification Channel'
+description: 'Send notifications to Slack, Discord, Telegram, Teams, Google Chat, Email, AWS SNS, Gotify, ntfy, and webhooks via Apprise'
 author: 'HHH'
 
 branding:
