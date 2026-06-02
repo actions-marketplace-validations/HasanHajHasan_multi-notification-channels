@@ -1,5 +1,8 @@
 # Multi-Channel Notification
 
+<img width="1536" height="1024" alt="multi-channel-notification" src="https://github.com/user-attachments/assets/bbaf7bf2-0cb4-4af2-a6ca-f8d85aae5e1a" />
+
+
 A **Node.js** GitHub Action that sends notifications to **10 platforms** using [Apprise](https://github.com/caronc/apprise). Zero npm dependencies at runtime — the script uses only Node.js built-ins.
 
 Provide content in one of two ways:
